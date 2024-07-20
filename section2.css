@@ -1,0 +1,345 @@
+section.two {
+    align-items: flex-start;
+    width: 100%;
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-bottom: 100px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+section.two .circle {
+    transform: translate(-50%, 0);
+    aspect-ratio: 1;
+    min-width: max-content;
+    border-radius: 50%;
+    background-color: var(--main1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    min-width: 150px;
+}
+
+section.two .circle span {
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.39);
+    padding: 20px;
+    aspect-ratio: 1;
+    background-color: var(--main2);
+    border-radius: 50%;
+    width: 75%;
+    height: 75%;
+}
+
+section.two .pair {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: max-content;
+    flex-wrap: nowrap;
+    height: 150px;
+    z-index: 20;
+}
+
+section.two .pair .line {
+
+    position: relative;
+    width: 90%;
+    border-radius: 55px 0 55px 0;
+    z-index: -1;
+    height: 60px;
+    padding-left: calc(250px /2);
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+    letter-spacing: 5px;
+    background-color: var(--main1);
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.39);
+}
+
+section.two .pair .line .bullet-fx {
+    justify-content: flex-end;
+    top: -15px;
+    border-radius: 0px;
+    width: calc(100% - 5px);
+    z-index: -1;
+}
+
+section.two .pair .line .bullet-fx::before {
+    top: 0;
+    transform: rotate(180deg);
+}
+
+section.two .recentProjects[visible=false] {
+    display: none;
+}
+
+section.two .recentProjects[visible=true] {
+    display: flex;
+    width: 100%;
+    height: 60%;
+    position: relative;
+    align-items: flex-start;
+    justify-content: flex-end;
+
+}
+
+
+
+section.two .recentProjects .container-card {
+    position: relative;
+    border-radius: 15px 0 0 15px;
+    width: 100px;
+    height: 100%;
+    background-color: var(--maindark2);
+    opacity: 0;
+
+    transition: 1s;
+
+
+
+}
+
+section.two .recentProjects .container-card .scroller {
+    overflow-x: scroll;
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+}
+
+section.two .recentProjects .container-card::before {
+    position: absolute;
+    content: "";
+    display: block;
+    width: 100px;
+    height: 100px;
+    right: 0;
+    top: 0;
+    transform: translate(0, -100%);
+    background-color: var(--body);
+    border-radius: 0px 0 400px 0;
+    z-index: 16;
+}
+
+section.two .recentProjects .container-card::after {
+    position: absolute;
+    content: "";
+    display: block;
+    top: 0;
+    width: 100px;
+    height: 100px;
+    right: 0;
+    transform: translate(0, -100%);
+    background-color: var(--maindark2);
+    z-index: 15;
+}
+
+
+section.two .recentProjects .container-card .overflow {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    width: max-content;
+    height: 100%;
+    gap: 15px;
+
+}
+
+section.two .recentProjects .container-card .scroller::-webkit-scrollbar {
+    height: 2px;
+}
+
+
+section.two .recentProjects .container-card .card {
+    min-width: 300px;
+    width: 25%;
+
+    height: 100%;
+    background-color: var(--maincard);
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.445);
+    border: 1px solid var(--maindark);
+    position: relative;
+    border-radius: 15px 0px;
+    transition: 0.3s;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+section.two .recentProjects .container-card .card .details p {
+    opacity: 0.8;
+}
+
+section.two .recentProjects .container-card .card .details {
+    padding: 15px;
+    height: 40%;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: flex-start;
+    flex-direction: column;
+    transition: 0.3s;
+}
+
+section.two .recentProjects .container-card .card .details .group {
+    width: 100%;
+}
+
+section.two .recentProjects .container-card .card .details .group:nth-child(2) {
+    display: flex;
+    justify-content: space-between;
+}
+
+section.two .recentProjects .container-card .card .details .date {
+    opacity: 0.7;
+    font-size: 14px;
+    width: max-content;
+    height: max-content;
+    text-align: center;
+}
+
+section.two .recentProjects .container-card .card .details button:hover {
+    background-color: var(--main3);
+}
+
+section.two .recentProjects .container-card .card .details button {
+    border: none;
+    border-radius: 3px;
+    transition: 0.3s;
+    cursor: pointer;
+    background-color: transparent;
+    padding: 5px;
+}
+
+section.two .recentProjects .container-card .card img {
+    width: 100%;
+    height: 60%;
+    object-fit: cover;
+    position: relative;
+    background-size: auto 100%;
+    transition: 0.3s;
+
+}
+
+section.two .recentProjects .container-card .card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+
+    left: 0;
+    width: 100%;
+    height: 60%;
+
+    background-image: linear-gradient(to top, var(--maincard), transparent 70%);
+    z-index: 16;
+    opacity: 0.7;
+    transition: 0.3s;
+}
+
+section.two .recentProjects .container-card .card:hover {
+    border-color: rgb(86, 28, 139);
+}
+
+section.two .recentProjects .container-card .card:hover .details {
+    background-color: var(--main7);
+}
+
+section.two .recentProjects .container-card .card:hover::before {
+    opacity: 0;
+}
+
+@media (max-width: 710px) {
+    section.two .recentProjects .container-card {
+        width: calc(100% - 15px);
+    }
+}
+
+
+section.two .recentProjects .recentName {
+
+    width: 40%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.sectionTitle {
+
+
+    font-size: 50px;
+    color: transparent;
+    text-align: center;
+    background: linear-gradient(to right, var(--main2), var(--main4));
+    -webkit-background-clip: text;
+    font-weight: 700;
+
+}
+
+section.two .recentProjects .recentName .adjectives {
+    padding: 40px;
+}
+
+section.two .recentProjects .recentName .adjectives h4 {
+    color: white;
+    display: none;
+    font-weight: 600;
+    font-size: 25px;
+    text-transform: uppercase;
+    text-shadow: 0 0 25px var(--main4);
+}
+
+
+section.two.unhide .recentProjects .container-card {
+    opacity: 1;
+    width: 60% !important;
+
+
+}
+
+@keyframes fade-in-adj {
+    0% {
+        opacity: 0;
+        transform: translate(-25%, 0);
+    }
+
+    100%,
+    20% {
+        opacity: 1;
+        transform: translate(0%, 0);
+    }
+}
+
+
+@media (max-width: 710px) {
+    section.two {
+        height: max-content;
+    }
+
+    section.two .recentProjects {
+        flex-direction: column;
+        height: max-content;
+        margin-top: 100px;
+        gap: 20px;
+    }
+
+
+    section.two .recentProjects .recentName {
+        width: 100%;
+    }
+
+    section.two .recentProjects .container-card {
+        min-width: 100%;
+        width: 100% !important;
+        min-height: 40vh;
+        height: 55vh;
+    }
+}

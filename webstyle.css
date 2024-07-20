@@ -1,0 +1,448 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: "Exo 2", sans-serif;
+    font-weight: 500;
+    color: white;
+}
+
+:root {
+    --mainTransparent: rgba(232, 139, 255, 0.575);
+    --body: rgb(12, 9, 12);
+    --main2: rgb(83, 62, 88);
+    --main1: rgb(45, 38, 58);
+    --main3: rgb(52, 35, 56);
+    --main4: rgb(175, 145, 182);
+    --main6: rgb(55, 41, 59);
+    --maindark: rgb(21, 18, 22);
+    --mainbright: rgb(40, 33, 43);
+    --main7: rgb(80, 53, 85);
+    --main8: rgb(83, 59, 87);
+    --main9: rgb(197, 140, 207);
+    --maindark2: rgba(60, 51, 80, 0.445);
+    --maincard: rgb(46, 38, 56);
+}
+
+body {
+    background-color: var(--body);
+    transition: 0.3s;
+    overflow-x: hidden;
+}
+
+nav li {}
+
+nav {
+    height: 55px;
+
+    position: fixed !important;
+    top: 25px;
+    z-index: 100;
+    transform: translate(-50%, 0);
+    left: 50%;
+    width: calc(100% - 40px);
+    animation: move-x 1s linear 1;
+
+
+}
+
+nav ul.navigation {
+    display: flex;
+    padding: 0 10%;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.24), rgba(0, 0, 0, 0));
+    background-color: var(--main1);
+    border-radius: 10px;
+    z-index: 1;
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.452);
+}
+
+ul {
+    list-style: none;
+    list-style-type: none;
+}
+
+nav ul.navigation .group {
+    width: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+nav ul.navigation li {
+    padding: 10px;
+    font-weight: 700;
+    transition: 0.4s;
+    cursor: pointer;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+nav ul.navigation li a:hover {
+    transition: 0.4s;
+}
+
+nav ul.navigation li:hover,
+nav ul.navigation li a:hover {
+    color: rgba(255, 255, 255, 0.534);
+
+}
+
+nav ul.navigation li.effect {
+    position: relative;
+}
+
+.bullet-fx {
+    position: absolute;
+    top: 100%;
+    left: 5px;
+    width: 50%;
+    height: 15px;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 15px;
+    z-index: -5;
+    gap: 0 10px;
+    border-radius: 0 10px;
+    overflow: hidden;
+}
+
+.bullet-fx::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(to right, var(--main2) 60%, var(--main2) 60%, transparent 100%);
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100%;
+    height: 7px;
+}
+
+.bullet-fx span {
+    max-width: calc(50% / (var(--numB)*2));
+    width: calc(50% / (var(--numB)*2));
+    min-width: 5px;
+    height: 100%;
+    background-color: var(--main2);
+    opacity: 1;
+}
+
+.bullet-fx span.notactive {
+    opacity: 0;
+}
+
+@keyframes move-x {
+    0% {
+        transform: translate(-100%, 0);
+        left: 50%;
+        width: calc(60% - 6vh);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(-50%, 0);
+        left: 50%;
+        width: calc(100% - 6vh);
+        opacity: 1;
+    }
+
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fill-in {
+    0% {
+        width: 0;
+        opacity: 1;
+    }
+
+    50%,
+    100% {
+        width: 100%;
+        opacity: 0;
+    }
+}
+
+nav ul.navigation li.effect::before {
+    background-color: var(--main3);
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 225%;
+    top: 50%;
+    transform: translate(0, -50%) scale(1.2) skew(30deg);
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.452);
+    left: 0;
+    transition: 0.3s;
+    background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.24), rgba(0, 0, 0, 0));
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    z-index: -1;
+}
+
+nav ul.navigation li.effect:hover {
+    color: rgb(255, 255, 255);
+    scale: 1;
+
+}
+
+nav ul.navigation li.effect {
+    scale: 1.1;
+    border-radius: 5px;
+    margin: 0px 20px;
+    padding: 5px;
+}
+
+nav ul.navigation li.effect:hover::before {
+    transform: translate(0, -50%) scale(1.2) skew(30deg);
+}
+
+
+nav ul.navigation .group {
+    position: relative;
+}
+
+nav ul.navigation .group .logo {
+    position: absolute;
+    top: 80%;
+    left: 30%;
+    width: calc(7vw);
+    height: calc(7vw);
+    transform: translate(-50%, -50%);
+    aspect-ratio: 1/1;
+
+    box-shadow: 0 0 15px black;
+    background-color: var(--main1);
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+nav ul.navigation .group .logo:hover img {
+    transform: translate(-50%, 0) scale(1.2);
+    filter: brightness(1.2);
+}
+
+nav ul.navigation .group .bow {
+    position: absolute;
+    top: 80%;
+    left: 30%;
+    width: calc(7vw + 25px);
+    height: calc(7vw + 25px);
+    transform: translate(-50%, -50%);
+    aspect-ratio: 1/1;
+    border-radius: 500px;
+    z-index: -1;
+    background-color: var(--main1);
+}
+
+
+nav ul.navigation .group .logo img {
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transition: 0.2s;
+    transform: translate(-50%, 0);
+}
+
+nav ul.navigation .group .name {
+    position: relative;
+    margin-left: calc(7vw + 25px);
+}
+
+nav ul.navigation .group .name::before {
+    content: "Copy discord";
+}
+
+nav ul.navigation .group .name span {
+    font-family: "Caveat", cursive;
+    font-optical-sizing: auto;
+    font-size: calc(1vw + 14px);
+
+}
+
+nav ul.navigation .group .name .n-2 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 0;
+    margin: 0;
+    color: rgb(140, 0, 255);
+    text-wrap: nowrap;
+    height: 100%;
+    width: 0px;
+    overflow: hidden;
+    animation: fill-in 3s linear infinite both;
+
+}
+
+.hoverMessage {}
+
+.hoverMessage::before {
+    position: absolute;
+    content: "";
+    top: calc(40% + 15px);
+    left: 50%;
+    transform: translate(-50%, 50%);
+    width: max-content;
+    height: max-content;
+    padding: 10px 15px;
+    background-color: rgba(0, 0, 0, 0.418);
+    border-radius: 10px;
+    animation: fade-in 0.5s ease-out 1;
+    font-style: italic;
+    display: none;
+}
+
+.hoverMessage:hover::before {
+    display: block;
+}
+
+
+@media (max-width: 810px) {
+
+    nav ul.navigation .group .logo {
+        top: 50%;
+        left: 30%;
+        width: calc(5vw + 25px);
+        height: calc(5vw + 25px);
+        transform: translate(-50%, -50%);
+
+    }
+
+    nav ul.navigation .group .bow {
+        top: 50%;
+        left: 30%;
+        width: calc(7vw + 25px);
+        height: calc(7vw + 25px);
+        transform: translate(-50%, -50%);
+    }
+}
+
+nav ul.navigation .goup.g-2 .menu {
+    display: none;
+
+}
+
+.menu {
+    display: none;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    aspect-ratio: 1;
+    width: 2.5vh;
+    align-items: flex-end;
+}
+
+.menu span {
+    background-color: white;
+    border-radius: 0px 5px 0px 5px;
+    width: 100%;
+    height: 3px;
+
+}
+
+.menu span:last-child {
+    width: 70%;
+}
+
+
+@media (max-width: 710px) {
+
+    nav ul.navigation .group.g-2 .menu {
+        display: flex;
+
+    }
+
+    nav ul.navigation .group.g-2 .dmenu {
+        display: none;
+        flex-direction: column;
+        width: max-content;
+        height: max-content;
+        justify-content: center;
+        background-color: var(--main3);
+        border-radius: 5px;
+
+        height: 100vh;
+        position: absolute;
+        top: -25px;
+        right: -20px;
+        padding: 15px 20px;
+        transform: translate(100%, 0);
+        background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.329), transparent, rgba(0, 0, 0, 0.329));
+        animation: fade-in 0.5s ease-out 1;
+
+
+    }
+
+    nav ul.navigation .group.g-2 .dmenu li.effect {
+        background-color: var(--main2);
+        background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.24), rgba(0, 0, 0, 0));
+    }
+
+    nav ul.navigation .group.g-2,
+    nav ul.navigation {
+        position: unset;
+    }
+
+    nav ul.navigation .group.g-2 li:hover {
+        opacity: 0.5;
+    }
+
+    nav ul.navigation li.effect {
+        scale: 1;
+        border-radius: 5px;
+        margin: 0;
+        padding: 10px;
+    }
+
+    nav ul.navigation .group.g-2 li::before {
+        content: unset;
+    }
+
+    nav ul.navigation .group.g-2.active .dmenu {
+        display: flex !important;
+    }
+
+    nav ul.navigation .group.g-2 {}
+}
+
+.hidden {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.397);
+    display: none;
+    animation: fade-in 0.3s linear 1;
+}
+
+.hidden.active {
+
+    display: block;
+    z-index: 20;
+}
+
+
+
+
+.copied.hoverMessage::before {
+    content: "Copied!" !important;
+    color: rgb(0, 255, 55);
+    text-shadow: 0 0 15px lime;
+
+
+}
