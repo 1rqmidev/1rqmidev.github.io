@@ -348,9 +348,55 @@ section.two.unhide .recentProjects .container-card {
 section.two .recentProjects .container-card .card.disabled .title,
 section.two .recentProjects .container-card .card.disabled p {
     margin-top: 5px;
-    border-radius: 50px;
+    border-radius: 10px;
     color: transparent !important;
-    background-color: var(--main4);
+    background-color: var(--main9);
     width: max-content;
     user-select: none;
+    position: relative;
+    overflow: hidden;
+
+}
+
+section.two .recentProjects .container-card .card.disabled .title::before,
+section.two .recentProjects .container-card .card.disabled p::before,
+section.two .recentProjects .container-card .card.disabled .title::after,
+section.two .recentProjects .container-card .card.disabled p::after {
+    content: "";
+    position: absolute;
+    z-index: 10;
+    width: 20px;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.247);
+    left: 0;
+    top: 0;
+    animation: mover 2s ease-in-out infinite;
+
+}
+
+section.two .recentProjects .container-card .card.disabled .title::after,
+section.two .recentProjects .container-card .card.disabled p::after {
+    width: 10px;
+}
+
+section.two .recentProjects .container-card .card.disabled .title::before,
+section.two .recentProjects .container-card .card.disabled p::before {
+    animation-delay: 1.5s;
+}
+
+
+@keyframes mover {
+
+    0% {
+        left: 0;
+        transform: skew(30deg) translate(-100%, 0);
+    }
+
+    40%,
+    100% {
+        left: 100%;
+        transform: skew(30deg) translate(100%, 0);
+
+    }
+
 }
