@@ -121,6 +121,7 @@ section.three .card-container2 .card.active::before {
     position: absolute;
     top: 0;
     left: 50%;
+    animation: fade-in 1s linear 1;
     transform: translate(-50%, -50%);
     z-index: 30;
 }

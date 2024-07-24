@@ -343,3 +343,14 @@ section.two.unhide .recentProjects .container-card {
         height: 55vh;
     }
 }
+
+
+section.two .recentProjects .container-card .card.disabled .title,
+section.two .recentProjects .container-card .card.disabled p {
+    margin-top: 5px;
+    border-radius: 50px;
+    color: transparent !important;
+    background-color: var(--main4);
+    width: max-content;
+    user-select: none;
+}

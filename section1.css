@@ -48,7 +48,10 @@ section .landing h1 span {
     color: var(--main4);
 }
 
-section .landing button {
+
+section .landing .works {
+    display: inline-block;
+    width: max-content;
     background-color: var(--main1);
     border-radius: 5px;
     padding: 5px 10px;
@@ -58,9 +61,10 @@ section .landing button {
     font-size: 20px;
     outline: none;
     margin: 5px 0;
+
 }
 
-section .landing button:hover {
+section .landing .works:hover {
     background-color: var(--main2);
 }
 
@@ -145,7 +149,7 @@ section .container {
     border-radius: 35px 0 35px 0;
 }
 
-.square.s2 button {
+.square.s2 a {
     position: absolute;
     width: 100%;
     min-height: 10%;
@@ -157,17 +161,20 @@ section .container {
     background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.418), transparent);
     cursor: pointer;
     transition: 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.square.s2 button:hover {
+.square.s2 a:hover {
     background-color: var(--main2);
 }
 
-.square.s2 button i {
+.square.s2 a i {
     transition: 0.3s;
 }
 
-.square.s2 button:hover i {
+.square.s2 a:hover i {
     transform: translate(0, 5px) rotate(-90deg) !important;
 
 }
