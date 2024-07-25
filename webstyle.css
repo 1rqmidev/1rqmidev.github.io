@@ -221,15 +221,13 @@ nav ul.navigation .group .logo {
     height: calc(7vw);
     transform: translate(-50%, -50%);
     aspect-ratio: 1/1;
-
+    border-radius: 50px;
     box-shadow: 0 0 15px black;
     background-color: var(--main1);
-    border-radius: 50px;
-    overflow: hidden;
 }
 
 nav ul.navigation .group .logo:hover img {
-    transform: translate(-50%, 0) scale(1.2);
+    --size: 120%;
     filter: brightness(1.2);
 }
 
@@ -248,10 +246,15 @@ nav ul.navigation .group .bow {
 
 
 nav ul.navigation .group .logo img {
-    height: 100%;
+    --size: 100%;
     object-fit: cover;
     position: absolute;
     top: 0;
+    width: 100%;
+    height: 100%;
+    background-size: var(--size);
+    background-position: 50% 50%;
+    border-radius: 50px;
     left: 50%;
     transition: 0.2s;
     transform: translate(-50%, 0);
@@ -445,4 +448,70 @@ nav ul.navigation .goup.g-2 .menu {
     text-shadow: 0 0 15px lime;
 
 
+}
+
+
+nav .logo .avaliable {
+
+    background-color: rgb(255, 36, 36);
+    position: absolute;
+    z-index: 1000;
+    border-radius: 50px;
+    width: 20%;
+    height: 20%;
+    bottom: 0;
+    right: 0;
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.377), transparent);
+    outline: 3px var(--main1) solid;
+    transform: translate(-30%, -30%);
+
+}
+
+nav .logo .avaliable span {
+    width: 100%;
+    position: absolute;
+    height: 5px;
+    background-color: var(--main1);
+    border-radius: 2px;
+    width: calc(100% - 6px);
+    top: 50%;
+    left: 3px;
+    transform: translate(0, -50%);
+}
+
+nav .logo .avaliable::after {
+
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    outline: 1.5px solid rgb(255, 0, 0);
+    border-radius: 50px;
+    z-index: -5;
+    animation: bigger 1s ease-out infinite;
+}
+
+@keyframes bigger {
+
+    0% {
+        transform: scale(0.9);
+        opacity: 1;
+
+
+
+    }
+
+    100%,
+    70% {
+        transform: scale(2);
+        opacity: 0;
+    }
+
+}
+
+nav .logo .avaliable::before {
+    color: rgb(255, 120, 120);
+    text-shadow: 0 0 15px rgba(255, 0, 0, 0.466);
 }
