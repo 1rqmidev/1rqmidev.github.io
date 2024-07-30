@@ -1,4 +1,36 @@
 document.addEventListener("DOMContentLoaded", e => {
+
+    const scroller = document.querySelector('section.two .recentProjects .container-card .scroller');
+
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    scroller.addEventListener('mousedown', (e) => {
+        isDown = true;
+        scroller.classList.add('active');
+        startX = e.pageX - scroller.offsetLeft;
+        scrollLeft = scroller.scrollLeft;
+    });
+
+    scroller.addEventListener('mouseleave', () => {
+        isDown = false;
+        scroller.classList.remove('active');
+    });
+
+    scroller.addEventListener('mouseup', () => {
+        isDown = false;
+        scroller.classList.remove('active');
+    });
+
+    scroller.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - scroller.offsetLeft;
+        const walk = (x - startX);
+        scroller.scrollLeft = scrollLeft - walk - 10;
+    });
+
     let bullCont = document.querySelectorAll(".bullet-fx");
 
     bullCont.forEach(element => {
@@ -40,18 +72,62 @@ document.addEventListener("DOMContentLoaded", e => {
         }
 
     })
-    let name = document.querySelector("nav .navigation .name");
-    name.addEventListener("click", e => {
-        navigator.clipboard.writeText(name.getAttribute("discord"))
-        name.classList.add("copied");
-        setTimeout(function () {
-            if (name.classList.contains("copied")) {
-                name.classList.remove("copied");
-            }
-        }, 1000)
+    let name = document.querySelectorAll(".username-discord");
+    name.forEach(e => {
+        e.addEventListener("click", v => {
+            navigator.clipboard.writeText(e.getAttribute("discord"))
+            e.classList.add("copied");
+            setTimeout(function () {
+                if (e.classList.contains("copied")) {
+                    e.classList.remove("copied");
+                }
+            }, 1000)
 
 
+        })
     })
+
+
+    let readmore = document.querySelectorAll(".readmore");
+    readmore.forEach(element => {
+        element.addEventListener("click", e => {
+            if (!element.classList.contains("reading-mode")) {
+                element.textContent = "read less"
+                element.classList.add("reading-mode")
+                element.parentElement.querySelector(".more").classList.add("uncollapse")
+
+            } else {
+                element.textContent = "read more"
+                element.classList.remove("reading-mode")
+                element.parentElement.querySelector(".more").classList.remove("uncollapse")
+            }
+        })
+    })
+
+
+    let ColorCards = document.querySelectorAll("section.two img");
+    let ColorSquares = document.querySelectorAll("section .square img");
+
+    ColorCards.forEach(cardImg => {
+
+        getAverageRGB(cardImg).then(rgb => {
+            console.log("RGB: -----------------------------------");
+            console.log("RGB » R: " + rgb.r + " G:" + rgb.g + " B:" + rgb.b);
+            cardImg.style.setProperty("--avrgcolor", `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`);
+        }).catch(error => {
+            console.error("Failed to get average RGB", error);
+        });
+    });
+    ColorSquares.forEach(cardImg => {
+
+        getAverageRGB(cardImg).then(rgb => {
+            console.log("RGB: -----------------------------------");
+            console.log("RGB » R: " + rgb.r + " G:" + rgb.g + " B:" + rgb.b);
+            cardImg.parentElement.style.setProperty("--avrgcolor", `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`);
+        }).catch(error => {
+            console.error("Failed to get average RGB", error);
+        });
+    });
 
 
     let bullets = Math.floor(Math.random() * 16);
@@ -209,7 +285,6 @@ document.addEventListener("DOMContentLoaded", e => {
 
             let lastChildIndex = +container.lastElementChild.getAttribute("number") - 3;
             container.style.transform = `translate(-${lastChildIndex * cardWidth}px, 0px)`;
-            console.log("done ------------------");
             container.querySelector(".active").classList.remove("active");
             container.lastElementChild.previousElementSibling.classList.add("active");
             current = lastChildIndex + 1;

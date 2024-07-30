@@ -26,6 +26,7 @@
     <meta name="twitter:description" content="You can find more information about me on this website..">
     <meta name="twitter:image" content="images/website.png">
 
+
     <!-- Meta Tags Generated via http://heymeta.com -->
 
 
@@ -69,7 +70,7 @@
                         </div>
                     </div>
                     <div class="bow"></div>
-                    <div class="name hoverMessage" discord="1r_q."><span class="n-1">1Rqmi,</span><span
+                    <div class="name hoverMessage username-discord" discord="1r_q."><span class="n-1">1Rqmi,</span><span
                             class="n-2">1Rqmi,</span></div>
                 </li>
             </div>
@@ -118,8 +119,8 @@
                                     d="M64.1358 43.7047L86.6322 31.745C87.2982 31.391 88.1016 31.8737 88.1016 32.628L88.1032 72.6763C88.1033 73.0408 87.905 73.3764 87.5857 73.5523L48.2777 95.2027C47.6112 95.5697 46.7953 95.0876 46.7953 94.3267V70.4773C46.7953 70.1193 46.9866 69.7886 47.297 69.6102L63.1035 60.5265C63.4139 60.3482 63.6052 60.0175 63.6052 59.6595V44.5877C63.6052 44.2179 63.8093 43.8783 64.1358 43.7047Z"
                                     fill="#2D87C3"></path>
                             </svg></a></div>
-                    <div class="discord hoverMessage socialicon " hoverMSG="Copy Discord username"><a href="/"><i
-                                class="fa-brands fa-discord"></i></a>
+                    <div class="discord hoverMessage socialicon username-discord" hoverMSG="Copy Discord username"
+                        discord="1r_q."><i class="fa-brands fa-discord"></i>
                     </div>
                     <div class="github hoverMessage socialicon " hoverMSG="Github page"><a
                             href="https://github.com/1RqMi-Official"><i class="fa-brands fa-github"></i></a>
@@ -173,13 +174,24 @@
                 <div class="container-card">
                     <div class="scroller">
                         <div class="overflow">
-                            <div class="card disabled">
-                                <img src="images/error.png" alt="">
+                            <div class="card">
+                                <img src="images/logo_previor.png" alt="">
                                 <div class="details">
                                     <div class="group">
-                                        <div class="title">Paradise Studio</div>
-                                        <p class="info">A project for Minecraft Team.</p>
-
+                                        <div class="title">Previor Studio</div>
+                                        <p class="info">Personal Server & Online Services Provider</p>
+                                        <div class="more-info collapse">
+                                            » We are providing
+                                            <div class="tags">
+                                                <span>Design</span><span>Programming</span><span>Minecraft</span>
+                                            </div>
+                                            <div class="more">
+                                                We are a team of experienced professionals offering a wide range of
+                                                services at affordable prices. Join our Discord now
+                                                to see our remarkable work! 🚀
+                                            </div>
+                                            <button class="readmore">Read more...</button>
+                                        </div>
                                     </div>
                                     <div class="group">
                                         <p class="date">7/18/2024</p>
@@ -381,7 +393,8 @@
             <h2 class="sectionTitle">Contact Me</h2>
             <h3>Feel free to reach out to me through any of the following methods</h3>
             <ul>
-                <li><i class="fa-brands fa-discord discord"></i> Discord ❱ 1r_q.</li>
+                <li class="hoverMessage username-discord" hoverMSG="Copy name" discord="1r_q."><i
+                        class="fa-brands fa-discord discord"></i> Discord ❱ 1r_q.</li>
                 <a href="https://www.behance.net/ramiraami">
                     <li>
 
@@ -426,7 +439,10 @@
                 <div class="title">Useful links</div>
                 <ul>
                     <li><a href="">Discord Server <i class="fa-solid fa-up-right-from-square"></i></a></li>
-                    <li><a href="">Discord User: 1r_q. <i class="fa-solid fa-copy"></i></a></li>
+                    <li class="hoverMessage username-discord" style="cursor: pointer;" hoverMSG="Copy name"
+                        discord="1r_q.">Discord User: 1r_q.
+                        <i class="fa-solid fa-copy"></i>
+                    </li>
                     <li><a href="">Instagram <i class="fa-solid fa-up-right-from-square"></i></a></li>
                     <li><a href="">Youtube <i class="fa-solid fa-up-right-from-square"></i></a></li>
                     <li><a href="">Portfolio <i class="fa-solid fa-up-right-from-square"></i></a></li>
@@ -435,6 +451,7 @@
         </div>
     </footer>
     <script src="style.js"></script>
+    <script src="colorAvrg.js"></script>
 </body>
 
 </html>

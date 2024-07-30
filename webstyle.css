@@ -9,19 +9,30 @@
 
 :root {
     --mainTransparent: rgba(232, 139, 255, 0.575);
-    --body: rgb(12, 9, 12);
+    --body: #0c0c0e;
     --main2: rgb(83, 62, 88);
     --main1: rgb(45, 38, 58);
     --main3: rgb(52, 35, 56);
     --main4: rgb(175, 145, 182);
     --main6: rgb(55, 41, 59);
-    --maindark: rgb(21, 18, 22);
+    --maindark: #1b1b29;
     --mainbright: rgb(40, 33, 43);
     --main7: rgb(80, 53, 85);
     --main8: rgb(83, 59, 87);
     --main9: rgb(197, 140, 207);
-    --maindark2: rgba(60, 51, 80, 0.445);
+    --maindark2: #1b1b29b9;
     --maincard: rgb(46, 38, 56);
+    --navigation-frame: #2d2d47;
+    --navigation: #30303b;
+    --square-button: #2c2c3d;
+    --text-highlight: #5e82cfce;
+    --text-color: #568bdb;
+    --works: #568bdb;
+    --lighter: #303c4e;
+    --glow: #488ef7;
+    --card: #1e1e30;
+    --glowing-card: #568bdb1c;
+    --footer: #16161d;
 }
 
 body {
@@ -33,16 +44,17 @@ body {
 nav li {}
 
 nav {
-    height: 55px;
+    height: 105px;
 
     position: fixed !important;
-    top: 25px;
+    top: 0px;
     z-index: 100;
     transform: translate(-50%, 0);
     left: 50%;
-    width: calc(100% - 40px);
+    width: calc(100%);
+    padding: 25px 40px;
     animation: move-x 1s linear 1;
-
+    background-image: linear-gradient(to bottom, rgb(13, 14, 17), transparent);
 
 }
 
@@ -54,7 +66,7 @@ nav ul.navigation {
     width: 100%;
     height: 100%;
     background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.24), rgba(0, 0, 0, 0));
-    background-color: var(--main1);
+    background-color: var(--navigation);
     border-radius: 10px;
     z-index: 1;
     box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.452);
@@ -115,7 +127,7 @@ nav ul.navigation li.effect {
     position: absolute;
     bottom: 0;
     left: 0;
-    background-image: linear-gradient(to right, var(--main2) 60%, var(--main2) 60%, transparent 100%);
+    background-image: linear-gradient(to right, var(--navigation) 60%, var(--navigation) 60%, transparent 100%);
     border-radius: 10px;
     overflow: hidden;
     width: 100%;
@@ -127,7 +139,7 @@ nav ul.navigation li.effect {
     width: calc(50% / (var(--numB)*2));
     min-width: 5px;
     height: 100%;
-    background-color: var(--main2);
+    background-color: var(--navigation-frame);
     opacity: 1;
 }
 
@@ -176,7 +188,7 @@ nav ul.navigation li.effect {
 }
 
 nav ul.navigation li.effect::before {
-    background-color: var(--main3);
+    background-color: var(--navigation-frame);
     content: "";
     position: absolute;
     width: 100%;
@@ -223,7 +235,6 @@ nav ul.navigation .group .logo {
     aspect-ratio: 1/1;
     border-radius: 50px;
     box-shadow: 0 0 15px black;
-    background-color: var(--main1);
 }
 
 nav ul.navigation .group .logo:hover img {
@@ -241,7 +252,7 @@ nav ul.navigation .group .bow {
     aspect-ratio: 1/1;
     border-radius: 500px;
     z-index: -1;
-    background-color: var(--main1);
+    background-color: var(--navigation);
 }
 
 
@@ -282,7 +293,7 @@ nav ul.navigation .group .name .n-2 {
     top: 0;
     padding: 0;
     margin: 0;
-    color: rgb(140, 0, 255);
+    color: var(--navigation-frame);
     text-wrap: nowrap;
     height: 100%;
     width: 0px;
@@ -291,16 +302,19 @@ nav ul.navigation .group .name .n-2 {
 
 }
 
-.hoverMessage {}
+.hoverMessage {
+    position: relative;
+}
 
 .hoverMessage::before {
     position: absolute;
-    content: "";
+    content: attr(hoverMSG);
     top: calc(40% + 15px);
     left: 50%;
     transform: translate(-50%, 50%);
     width: max-content;
     height: max-content;
+    font-size: 16px;
     padding: 10px 15px;
     background-color: rgba(0, 0, 0, 0.418);
     border-radius: 10px;
@@ -375,7 +389,7 @@ nav ul.navigation .goup.g-2 .menu {
         width: max-content;
         height: max-content;
         justify-content: center;
-        background-color: var(--main3);
+        background-color: var(--navigation);
         border-radius: 5px;
 
         height: 100vh;

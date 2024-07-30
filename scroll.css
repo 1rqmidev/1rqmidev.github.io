@@ -1,11 +1,11 @@
 ::-webkit-scrollbar-track {
-    background: var(--main2);
 
+    background: var(--navigation-frame);
 }
 
 /* Scrollbar thumb */
 ::-webkit-scrollbar-thumb {
-    background: var(--main4);
+    background: var(--text-color);
 }
 
 /* Scrollbar thumb on hover */

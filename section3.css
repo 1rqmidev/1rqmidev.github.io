@@ -14,7 +14,7 @@ section.three {
 .liner.big::before {
     content: "";
     background-color: var(--body);
-    border: 3px solid var(--main2);
+    border: 3px solid var(--navigation);
     position: absolute;
     width: 20px;
     height: 20px;
@@ -37,14 +37,14 @@ section.three {
     position: relative;
     margin: 5px;
     height: 5px;
-    background-color: var(--main2);
+    background-color: var(--navigation);
     margin: 2px auto;
     border-radius: 10px;
 }
 
 section.three .sectionTitle {
 
-    background-image: linear-gradient(315deg, var(--main2), var(--main4));
+    background-image: linear-gradient(315deg, var(--text-color), var(--square-button));
 
 }
 
@@ -76,12 +76,12 @@ section.three .card-container2 {
 section.three .card-container2 .card {
     height: max-content;
 
-    background-color: var(--main2);
+    background-color: var(--navigation);
     border-radius: 10px;
     font-size: 20px;
     min-width: calc(100%/3);
     transition: 0.3s;
-    border: 2px solid var(--mainbright);
+    border: 2px solid rgba(0, 0, 0, 0.212);
     cursor: pointer;
     min-height: 250px;
     opacity: 0.4;
@@ -90,19 +90,18 @@ section.three .card-container2 .card {
 
 section.three .card-container2 .card:hover {
     transition: 0.35s !important;
-    background-color: rgb(97, 70, 100) !important;
+    background-color: var(--square-button) !important;
 }
 
 section.three .card-container2 .card:hover .stars {
-    animation: fade-in 0.5s linear infinite alternate-reverse;
+    animation: fade-in 1s linear infinite alternate-reverse;
 }
 
 
 section.three .card-container2 .card.active {
-    background-color: #623e85;
+    background-color: var(--lighter);
     transform: scale(1.05);
     z-index: 40;
-    box-shadow: 0 0 15px 1px rgba(100, 59, 112, 0.233), 0 0 35px 15px rgba(100, 59, 112, 0.096);
     transition: 0s;
     height: 100%;
     padding-bottom: 50px;
@@ -127,8 +126,6 @@ section.three .card-container2 .card.active::before {
 }
 
 section.three .card-container2 .card .profile .hoverMessage::before {
-    content: attr(hoverMSG);
-    font-size: 16px;
     top: -10px;
     left: 0;
     transform: translate(0, -100%);
@@ -141,7 +138,7 @@ section.three .card-container2 .card .profile {
     flex-wrap: nowrap;
     gap: 20px;
     cursor: pointer;
-    background-image: linear-gradient(45deg, var(--mainbright), transparent);
+    background-image: linear-gradient(45deg, var(--navigation-frame), transparent);
     box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.308);
     background-color: rgba(0, 0, 0, 0.356);
     border-radius: 5px;

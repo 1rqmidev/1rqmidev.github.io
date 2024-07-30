@@ -1,6 +1,6 @@
 footer {
     width: 100%;
-    background-color: var(--maindark);
+    background-color: var(--footer);
 
 }
 
@@ -77,7 +77,7 @@ footer .f-section ul li a {
 
 footer .f-section ul li:hover a {
     opacity: 1;
-    color: var(--main9);
+    color: var(--text-color);
 }
 
 @media (max-width: 710px) {

@@ -65,7 +65,7 @@ section.four .contact {
     padding: 15px 0;
     width: 50%;
     height: 60vh;
-    border-right: 3px solid var(--main2);
+    border-right: 3px solid var(--navigation);
 }
 
 
@@ -74,11 +74,11 @@ section.four .contact h3 {
     font-size: 25px;
     font-weight: 600;
     padding: 20px;
-    background-image: linear-gradient(to left, var(--main6), transparent);
+    background-image: linear-gradient(to left, var(--navigation), transparent);
     border-radius: 3px;
     width: 100%;
     margin: 10px 0;
-    color: var(--main9);
+    color: var(--text-color);
 
 }
 
@@ -109,6 +109,15 @@ section.four .contact ul li {
     padding: 10px;
     display: flex;
     align-items: center;
+
+}
+
+section.four .hoverMessage::before,
+footer .hoverMessage::before {
+    top: 50%;
+    transform: translate(0, -50%);
+    right: 10px;
+    left: unset;
 
 }
 

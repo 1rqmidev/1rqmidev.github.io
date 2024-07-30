@@ -7,7 +7,7 @@ section {
     justify-content: space-between;
     align-items: center;
     height: calc(90vh - 140px);
-    gap: 35px;
+    gap: 50px;
 
 }
 
@@ -32,11 +32,16 @@ section .landing p span::before {
     position: absolute;
     width: 100%;
     height: 30%;
-    background-color: var(--mainTransparent);
+    background-color: var(--text-highlight);
     bottom: 0;
     left: 0;
     z-index: -1;
 
+}
+
+section .landing p {
+    font-size: 18px;
+    font-weight: 400;
 }
 
 section .landing h1:nth-child(1) {
@@ -45,29 +50,37 @@ section .landing h1:nth-child(1) {
 }
 
 section .landing h1 span {
-    color: var(--main4);
+    color: var(--text-color);
 }
 
 
 section .landing .works {
     display: inline-block;
     width: max-content;
-    background-color: var(--main1);
+    background-color: transparent;
+    border: var(--works) 1px solid;
+    color: var(--works);
     border-radius: 5px;
     padding: 5px 10px;
-    border: none;
+
     transition: 0.3s;
     cursor: pointer;
     font-size: 20px;
     outline: none;
-    margin: 5px 0;
+    margin: 10px 5px;
+    font-weight: 700;
+    text-transform: uppercase;
 
 }
 
 section .landing .works:hover {
-    background-color: var(--main2);
+    background-color: var(--works);
+    color: var(--body);
 }
 
+section .landing .works:hover i {
+    color: var(--body) !important;
+}
 
 .space {
     height: 140px;
@@ -85,23 +98,14 @@ section .container {
     box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.822);
     position: absolute;
     overflow: hidden;
-    background-color: var(--main6);
+    background-color: var(--avrgcolor, --navigation);
     transition: 0.4s;
 }
 
-.square::after {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: var(--main1);
-    z-index: 0;
-    left: 15px;
-    top: -15px;
-}
 
 .square img {
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -157,8 +161,7 @@ section .container {
     bottom: 0;
     border: none;
     left: 0;
-    background-color: var(--main1);
-    background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.418), transparent);
+    background-color: var(--square-button);
     cursor: pointer;
     transition: 0.3s;
     display: flex;
@@ -167,7 +170,7 @@ section .container {
 }
 
 .square.s2 a:hover {
-    background-color: var(--main2);
+    background-color: var(--navigation-frame);
 }
 
 .square.s2 a i {
@@ -193,32 +196,19 @@ section .container {
 
 @media (min-width: 1100px) {
 
-    section .container {
-        transform-style: preserve-3d;
-        perspective: 1000px;
-    }
+    section .container {}
 
     section .container .square.s2 {
-        transform-style: preserve-3d;
-        z-index: 60;
-
-        top: 50%;
-        right: 0;
-        transform: translateZ(130px) translateX(0) translateY(-50%) scale(0.9);
+        width: 100%;
     }
 
     section .container .square.s1 {
-        transform: translateY(-25%) translateX(-25px) rotateX(60deg);
-        transform-style: preserve-3d;
-        z-index: 3;
-        mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0));
+        opacity: 0.5;
+        left: 0;
     }
 
     section .container .square.s3 {
-        transform: translateY(25%) translateX(-25px) rotateX(-60deg);
-        transform-style: preserve-3d;
-        z-index: 3;
-        mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0));
+        opacity: 0.3;
     }
 
     .square.s1 img,
@@ -359,16 +349,38 @@ body {
     flex-wrap: nowrap;
     gap: 15px;
     justify-content: center;
-    background-color: var(--mainbright);
-    background-image: linear-gradient(45deg, transparent, var(--mainbright), transparent);
+    background-color: var(--square-button);
+    background-image: linear-gradient(45deg, transparent, rgba(0, 0, 0, 0.13), transparent);
     margin-top: 15px;
     padding: 15px;
     border-radius: 10px;
+    position: relative;
 }
+
+.social::before {
+    content: "";
+    width: 40%;
+    height: 100%;
+    position: absolute;
+    right: -20px;
+    top: 0;
+    opacity: 0.2;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-image: url("https://garden.spoonflower.com/c/4865633/p/f/m/pxoeW49Xu1HJYJMF3uv7BJxtNGoOGkqbtWEEQf4UXPPSrSzjPqJUiinS/Black%20and%20White%20Stripes%20(Four%20to%20an%20Inch).jpg");
+    mask-image: linear-gradient(to left, rgba(0, 0, 0, 0), black, rgba(0, 0, 0, 0));
+    transform: translate(0, 0) skew(45deg);
+    mix-blend-mode: color-burn;
+    transition: 0.3s;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.social:hover::before {}
 
 .social .socialicon {
     position: relative;
     transition: 0.4s;
+    transition-timing-function: cubic-bezier(0.31, 1.37, 0.71, 1.12);
 }
 
 .social .discord a i,
@@ -402,18 +414,5 @@ section.four .discord {
     background: linear-gradient(to right, #ff7e5f, #feb47b);
     -webkit-background-clip: text;
     color: transparent;
-
-}
-
-
-
-.social .discord::before,
-.social .insta::before,
-.social .bbb::before,
-.social .youtube::before,
-.social .github::before,
-nav .logo .avaliable::before {
-    content: attr(hoverMSG);
-    font-size: 16px;
 
 }

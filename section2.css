@@ -18,7 +18,7 @@ section.two .circle {
     aspect-ratio: 1;
     min-width: max-content;
     border-radius: 50%;
-    background-color: var(--main1);
+    background-color: var(--navigation);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,7 +32,7 @@ section.two .circle span {
     box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.39);
     padding: 20px;
     aspect-ratio: 1;
-    background-color: var(--main2);
+    background-color: var(--navigation-frame);
     border-radius: 50%;
     width: 75%;
     height: 75%;
@@ -61,7 +61,7 @@ section.two .pair .line {
     align-items: center;
     font-size: 25px;
     letter-spacing: 5px;
-    background-color: var(--main1);
+    background-color: var(--square-button);
     box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.39);
 }
 
@@ -97,22 +97,34 @@ section.two .recentProjects[visible=true] {
 section.two .recentProjects .container-card {
     position: relative;
     border-radius: 15px 0 0 15px;
-    width: 100px;
+    width: 100%;
     height: 100%;
     background-color: var(--maindark2);
     opacity: 0;
 
     transition: 1s;
+    overflow: visible;
 
 
 
 }
 
 section.two .recentProjects .container-card .scroller {
-    overflow-x: scroll;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    cursor: grab;
+    user-select: none;
     width: 100%;
     height: 100%;
     padding: 15px;
+    overflow-y: visible !important;
+    touch-action: pan-x !important;
+    -webkit-overflow-scrolling: touch !important;
+}
+
+section.two .recentProjects .container-card .scroller.active {
+    cursor: grabbing;
+    filter: grayscale(0.3);
 }
 
 section.two .recentProjects .container-card::before {
@@ -128,6 +140,12 @@ section.two .recentProjects .container-card::before {
     border-radius: 0px 0 400px 0;
     z-index: 16;
 }
+
+section.two .recentProjects .container-card .scroller::-webkit-scrollbar {
+    display: none;
+    /* Optional: Hide scrollbars for a cleaner look */
+}
+
 
 section.two .recentProjects .container-card::after {
     position: absolute;
@@ -151,6 +169,7 @@ section.two .recentProjects .container-card .overflow {
     height: 100%;
     gap: 15px;
 
+    width: max-content;
 }
 
 section.two .recentProjects .container-card .scroller::-webkit-scrollbar {
@@ -160,32 +179,56 @@ section.two .recentProjects .container-card .scroller::-webkit-scrollbar {
 
 section.two .recentProjects .container-card .card {
     min-width: 300px;
-    width: 25%;
+    width: 25% !important;
+    max-width: 25%;
 
     height: 100%;
-    background-color: var(--maincard);
+    background-color: var(--card);
     box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.445);
     border: 1px solid var(--maindark);
     position: relative;
     border-radius: 15px 0px;
     transition: 0.3s;
     cursor: pointer;
+    overflow: hidden;
     border: 1px solid transparent;
+    transform: translate(0, -120%);
+    display: none;
+    cursor: grab;
+    animation: fade-in-card 1s cubic-bezier(0.075, 0.82, 0.165, 1) 1;
 }
 
+@keyframes fade-in-card {
+
+    0%,
+    0% {
+        transform: translate(0, -120%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
+
+}
+
+
+
 section.two .recentProjects .container-card .card .details p {
+
     opacity: 0.8;
 }
 
 section.two .recentProjects .container-card .card .details {
     padding: 15px;
-    height: 40%;
+    height: calc(100% - 200px);
     display: flex;
     justify-content: space-between;
     width: 100%;
     align-items: flex-start;
     flex-direction: column;
     transition: 0.3s;
+    position: relative;
 }
 
 section.two .recentProjects .container-card .card .details .group {
@@ -206,7 +249,7 @@ section.two .recentProjects .container-card .card .details .date {
 }
 
 section.two .recentProjects .container-card .card .details button:hover {
-    background-color: var(--main3);
+    background-color: var(--text-color);
 }
 
 section.two .recentProjects .container-card .card .details button {
@@ -220,40 +263,125 @@ section.two .recentProjects .container-card .card .details button {
 
 section.two .recentProjects .container-card .card img {
     width: 100%;
-    height: 60%;
-    object-fit: cover;
+    height: 200px;
+    object-fit: contain;
     position: relative;
     background-size: auto 100%;
-    transition: 0.3s;
+    transition: 0.4s;
+    background-color: var(--avrgcolor);
+    filter: hue-rotate(270deg) !important;
 
 }
 
 section.two .recentProjects .container-card .card::before {
     content: "";
-    position: absolute;
     top: 0;
-
     left: 0;
+    position: absolute;
     width: 100%;
-    height: 60%;
+    height: 100px;
 
-    background-image: linear-gradient(to top, var(--maincard), transparent 70%);
-    z-index: 16;
-    opacity: 0.7;
-    transition: 0.3s;
+    background-image: linear-gradient(to bottom, rgb(10, 11, 12), transparent);
+    z-index: 10000;
+}
+
+
+
+section.two .recentProjects .container-card .card:active {
+    cursor: grabbing;
 }
 
 section.two .recentProjects .container-card .card:hover {
-    border-color: rgb(86, 28, 139);
+    border-color: var(--glow);
+    width: 25% !important;
+
 }
+
+section.two .recentProjects .container-card .card:hover img {
+    height: 100px;
+    transform: scale(3);
+    filter: hue-rotate(270deg) blur(5px) !important;
+
+}
+
 
 section.two .recentProjects .container-card .card:hover .details {
-    background-color: var(--main7);
+    background-color: var(--square-button);
+    height: calc(100% - 100px);
+    transform: translate(0, 0);
+
 }
 
-section.two .recentProjects .container-card .card:hover::before {
-    opacity: 0;
+section.two .recentProjects .container-card .card .details .more-info {
+    padding: 10px 0;
+    display: none;
+    /* Ensure it's visible */
+    width: 250px;
+    /* Take full width of parent */
+    overflow: hidden;
+    /* Hide overflow */
+    word-wrap: break-word;
+    /* Break long words */
+    overflow-wrap: break-word;
+    /* Break long words */
+    text-overflow: ellipsis;
+    /* Add ellipsis for overflowed text */
+    white-space: normal;
+    /* Ensure text wraps */
+    box-sizing: border-box;
+    height: 80%;
+    /* Include padding and border in the width */
+    animation: fade-in 0.3s linear 1;
 }
+
+section.two .recentProjects .container-card .card:hover .details .more-info.collapse {
+    display: inline-block;
+}
+
+section.two .recentProjects .container-card .card .details .more-info.collapse button {
+    opacity: 0.6;
+    cursor: pointer;
+    text-transform: capitalize;
+    margin: 5px;
+}
+
+.uncollapse {
+    height: 70px !important;
+    padding: 5px 10px !important;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: max-content;
+    margin: 5px 0;
+    gap: 10px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.034);
+}
+
+.tags span {
+    background-color: rgba(0, 0, 0, 0.233);
+    border-radius: 5px;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+section.two .recentProjects .container-card .card .details .more-info.collapse .more {
+    height: 0;
+    transition: 0.4s;
+    background-color: rgba(0, 0, 0, 0.281);
+    border-radius: 5px;
+    padding: 0px;
+    margin: 5px 0;
+    animation: fade-in 0.3s linear 1;
+    overflow: hidden;
+    font-size: 14px;
+    overflow-y: auto;
+}
+
+section.two .recentProjects .container-card .card:hover::before {}
 
 @media (max-width: 710px) {
     section.two .recentProjects .container-card {
@@ -278,7 +406,7 @@ section.two .recentProjects .recentName {
     font-size: 50px;
     color: transparent;
     text-align: center;
-    background: linear-gradient(to right, var(--main2), var(--main4));
+    background: linear-gradient(to right, var(--text-color), var(--navigation-frame));
     -webkit-background-clip: text;
     font-weight: 700;
 
@@ -294,7 +422,7 @@ section.two .recentProjects .recentName .adjectives h4 {
     font-weight: 600;
     font-size: 25px;
     text-transform: uppercase;
-    text-shadow: 0 0 25px var(--main4);
+    text-shadow: 0 0 25px var(--text-color);
 }
 
 
@@ -303,6 +431,11 @@ section.two.unhide .recentProjects .container-card {
     width: 60% !important;
 
 
+}
+
+section.two.unhide .recentProjects .container-card .card {
+    display: block;
+    transform: translate(0, 0);
 }
 
 @keyframes fade-in-adj {
@@ -344,24 +477,38 @@ section.two.unhide .recentProjects .container-card {
     }
 }
 
+section.two .recentProjects .container-card .card.disabled .details .more-info.collapse * {
+    display: none !important;
+}
 
 section.two .recentProjects .container-card .card.disabled .title,
-section.two .recentProjects .container-card .card.disabled p {
+section.two .recentProjects .container-card .card.disabled p,
+section.two .recentProjects .container-card .card.disabled .details .more-info.collapse {
     margin-top: 5px;
     border-radius: 10px;
     color: transparent !important;
-    background-color: var(--main9);
+    background-color: var(--text-color);
     width: max-content;
     user-select: none;
     position: relative;
     overflow: hidden;
 
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    text-overflow: ellipsis;
+    max-width: 250px;
+}
+
+section.two .recentProjects .container-card .card.disabled img {
+    filter: hue-rotate(270deg) grayscale(0.9) !important;
 }
 
 section.two .recentProjects .container-card .card.disabled .title::before,
 section.two .recentProjects .container-card .card.disabled p::before,
 section.two .recentProjects .container-card .card.disabled .title::after,
-section.two .recentProjects .container-card .card.disabled p::after {
+section.two .recentProjects .container-card .card.disabled p::after,
+section.two .recentProjects .container-card .card.disabled .details .more-info.collapse::after,
+section.two .recentProjects .container-card .card.disabled .details .more-info.collapse::before {
     content: "";
     position: absolute;
     z-index: 10;
@@ -370,7 +517,7 @@ section.two .recentProjects .container-card .card.disabled p::after {
     background-color: rgba(255, 255, 255, 0.247);
     left: 0;
     top: 0;
-    animation: mover 2s ease-in-out infinite;
+    animation: mover 2s ease-in-out infinite !important;
 
 }
 
@@ -380,7 +527,8 @@ section.two .recentProjects .container-card .card.disabled p::after {
 }
 
 section.two .recentProjects .container-card .card.disabled .title::before,
-section.two .recentProjects .container-card .card.disabled p::before {
+section.two .recentProjects .container-card .card.disabled p::before,
+section.two .recentProjects .container-card .card.disabled .details .more-info.collapse::before {
     animation-delay: 1.5s;
 }
 
