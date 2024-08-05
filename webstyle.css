@@ -464,10 +464,7 @@ nav ul.navigation .goup.g-2 .menu {
 
 }
 
-
-nav .logo .avaliable {
-
-    background-color: rgb(255, 36, 36);
+nav .logo .status {
     position: absolute;
     z-index: 1000;
     border-radius: 50px;
@@ -475,13 +472,30 @@ nav .logo .avaliable {
     height: 20%;
     bottom: 0;
     right: 0;
-    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.377), transparent);
     outline: 3px var(--main1) solid;
     transform: translate(-30%, -30%);
-
+    transition: 0.5s;
 }
 
-nav .logo .avaliable span {
+nav .logo .offline {
+    background-color: rgb(255, 36, 36);
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.377), transparent);
+    animation: biggerv 1s linear 1;
+}
+
+nav .logo .online {
+    background-color: rgb(43, 255, 0);
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.377), transparent);
+    animation: biggerv 1s linear 1;
+}
+
+nav .logo .away {
+    background-color: rgb(255, 153, 0);
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.377), transparent);
+    animation: biggerv 1s linear 1;
+}
+
+nav .logo .offline span {
     width: 100%;
     position: absolute;
     height: 5px;
@@ -521,6 +535,23 @@ nav .logo .avaliable::after {
     70% {
         transform: scale(2);
         opacity: 0;
+    }
+
+}
+
+@keyframes biggerv {
+
+    0% {
+        transform: translate(-30%, -30%) scale(2);
+        opacity: 0;
+
+
+
+    }
+
+    100% {
+        transform: translate(-30%, -30%) scale(1);
+        opacity: 1;
     }
 
 }

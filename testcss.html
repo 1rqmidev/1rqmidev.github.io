@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Status</title>
+    <style>
+        .reg {
+            display: none;
+        }
+
+        body {
+            background-color: rgb(10, 10, 10);
+        }
+
+        .status {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgb(25, 27, 27);
+            border-radius: 5px;
+            padding: 20px;
+            width: 50%;
+            height: max-content;
+            display: flex;
+            flex-direction: column;
+            color: white;
+        }
+
+        .status .username {
+            opacity: 0.5;
+            background-color: rgb(39, 49, 49);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.438);
+            outline: none;
+            border: none;
+            margin: 10px 0;
+            color: white;
+            user-select: none;
+            pointer-events: none;
+            padding: 20px;
+        }
+
+        .status .password {
+            background-color: rgb(39, 49, 49);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.438);
+            outline: none;
+            border: none;
+            margin: 10px 0;
+            color: white;
+            padding: 20px;
+        }
+
+        .status .status-btn {
+            width: 100%;
+            height: 70px;
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .status .status-btn button {
+            outline: none;
+            padding: 20px;
+            color: var(--bc);
+            height: 100%;
+            width: calc(100%/3);
+            border: none;
+            background-color: rgb(22, 22, 24);
+            font-weight: 700;
+            font-size: 25px;
+            transition: 0.4s;
+            cursor: pointer;
+
+        }
+
+        .status .status-btn:hover button {
+            opacity: 0.4;
+        }
+
+        .status .status-btn:hover button:active {
+            transform: scale(1.2);
+        }
+
+        .status .status-btn button:hover {
+            background-color: var(--bc);
+            color: rgb(22, 22, 24);
+            opacity: 1;
+            transform: translate(0, -10px);
+        }
+
+        .status .errors {
+            width: 100%;
+            height: max-content;
+            padding: 20px;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            text-shadow: 0 0 15px white;
+        }
+
+        h2 {
+            width: 100%;
+            font-size: 40px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>User Status</h1>
+
+    <!-- Registration Form -->
+    <div class="reg">
+        <h2>Register</h2>
+        <input type="text" id="registerUsername" placeholder="Enter username">
+        <input type="password" id="registerPassword" placeholder="Enter password">
+        <button onclick="register()">Register</button>
+        <div id="registerMessage"></div>
+    </div>
+
+    <!-- Status Management -->
+    <div class="status">
+        <h2>Set Status | 1RqMi page</h2>
+        <input type="text" id="statusUsername" placeholder="Enter username" value="1RqMi" class="username">
+        <input type="password" id="statusPassword" placeholder="Enter password" class="password">
+        <div class="status-btn">
+            <button style="--bc: green" onclick="setStatus('online')">Online</button>
+            <button style="--bc: red" onclick="setStatus('offline')">Offline</button>
+            <button style="--bc: orange" onclick="setStatus('away')">Away</button>
+        </div>
+        <div class="errors">Hay</div>
+    </div>
+
+    <!-- Status Retrieval -->
+    <div class="reg">
+        <h2>Get Status</h2>
+        <input type="text" id="getStatusUsername" placeholder="Enter username">
+        <button onclick="getStatus()">Get Status</button>
+        <div id="statusMessage"></div>
+    </div>
+
+
+    </div>
+
+    <script>
+        async function register() {
+            const username = document.getElementById('registerUsername').value;
+            const password = document.getElementById('registerPassword').value;
+
+            if (!username || !password) {
+                document.querySelector(".errors").textContent = ('Please enter a username and password');
+                return;
+            }
+
+            const response = await fetch('/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            });
+            const data = await response.json();
+            if (response.ok) {
+                document.querySelector(".errors").textContent = ('Registration successful!');
+            } else {
+                document.querySelector(".errors").textContent = (data.message || 'Registration failed');
+            }
+            document.getElementById('registerMessage').innerText = data.message;
+        }
+
+        async function setStatus(status) {
+            const username = document.getElementById('statusUsername').value;
+            const password = document.getElementById('statusPassword').value;
+
+            if (!username || !password || !status) {
+                document.querySelector(".errors").textContent = ('Please enter a username, password, and select a status');
+                return;
+            }
+
+            const response = await fetch('/set-status', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, status, password })
+            });
+            const data = await response.json();
+            if (response.ok) {
+                document.querySelector(".errors").textContent = (`Status set to ${data.status}`);
+            } else {
+                document.querySelector(".errors").textContent = (data.message || 'Failed to set status');
+            }
+            document.getElementById('statusMessage').innerText = data.message || `Status set to ${data.status}`;
+        }
+
+        async function getStatus() {
+            const username = document.getElementById('getStatusUsername').value;
+
+            if (!username) {
+                document.querySelector(".errors").textContent = ('Please enter a username');
+                return;
+            }
+
+            const response = await fetch(`/get-status/${username}`);
+            if (response.ok) {
+                const data = await response.json();
+                document.getElementById('statusMessage').innerText = `User status is ${data.status}`;
+            } else {
+                const error = await response.json();
+                document.querySelector(".errors").textContent = (error.message || 'Failed to retrieve status');
+                document.getElementById('statusMessage').innerText = error.message;
+            }
+        }
+    </script>
+</body>
+
+</html>
