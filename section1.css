@@ -22,6 +22,19 @@ section .landing {
 
 }
 
+
+.one {
+    transform: translate(0, 200px);
+    transition: 0.7s;
+    opacity: 0;
+}
+
+.one.view {
+    opacity: 1;
+    transform: translate(0, 0);
+
+}
+
 section .landing p span {
     position: relative;
 

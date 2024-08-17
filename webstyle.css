@@ -307,6 +307,7 @@ nav ul.navigation .group .name .n-2 {
 }
 
 .hoverMessage::before {
+    --color: white;
     position: absolute;
     content: attr(hoverMSG);
     top: calc(40% + 15px);
@@ -321,6 +322,9 @@ nav ul.navigation .group .name .n-2 {
     animation: fade-in 0.5s ease-out 1;
     font-style: italic;
     display: none;
+    font-weight: 500;
+    color: var(--color);
+    text-shadow: 0 0 15px var(--color);
 }
 
 .hoverMessage:hover::before {
@@ -493,6 +497,21 @@ nav .logo .away {
     background-color: rgb(255, 153, 0);
     background-image: linear-gradient(to top, rgba(0, 0, 0, 0.377), transparent);
     animation: biggerv 1s linear 1;
+}
+
+nav .logo .away::before {
+    content: "Feeling exhausted—need some time to recharge! Be back soon." !important;
+    --color: yellow !important;
+}
+
+nav .logo .online::before {
+    content: "I’m currently open to taking on new projects." !important;
+    --color: lime !important;
+}
+
+nav .logo .offline::before {
+    content: "I’m currently unavailable at this time." !important;
+    --color: rgb(255, 93, 93) !important;
 }
 
 nav .logo .offline span {

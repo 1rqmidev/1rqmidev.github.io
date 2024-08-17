@@ -105,30 +105,6 @@ document.addEventListener("DOMContentLoaded", e => {
     })
 
 
-    let ColorCards = document.querySelectorAll("section.two img");
-    let ColorSquares = document.querySelectorAll("section .square img");
-
-    ColorCards.forEach(cardImg => {
-
-        getAverageRGB(cardImg).then(rgb => {
-            console.log("RGB: -----------------------------------");
-            console.log("RGB » R: " + rgb.r + " G:" + rgb.g + " B:" + rgb.b);
-            cardImg.style.setProperty("--avrgcolor", `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`);
-        }).catch(error => {
-            console.error("Failed to get average RGB", error);
-        });
-    });
-    ColorSquares.forEach(cardImg => {
-
-        getAverageRGB(cardImg).then(rgb => {
-            console.log("RGB: -----------------------------------");
-            console.log("RGB » R: " + rgb.r + " G:" + rgb.g + " B:" + rgb.b);
-            cardImg.parentElement.style.setProperty("--avrgcolor", `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`);
-        }).catch(error => {
-            console.error("Failed to get average RGB", error);
-        });
-    });
-
 
     let bullets = Math.floor(Math.random() * 16);
 
@@ -216,20 +192,35 @@ document.addEventListener("DOMContentLoaded", e => {
 
             let sectionTwoTop = document.querySelector(".four .image").getBoundingClientRect().top + window.scrollY;
             let viewportHeight = window.innerHeight;
-            console.log("checked?xx")
             if (window.scrollY + viewportHeight > sectionTwoTop) {
                 sectionFour.classList.add("view");
                 window.removeEventListener("scroll", handleScrollFour);
             }
         }
     }
+    function handleScrollOne() {
+        let sectionOne = document.querySelector(".one");
+        if (sectionOne) {
 
-    handleScrollFour()
-    handleScrollTwo()
+            let sectionOneTop = document.querySelector(".one").getBoundingClientRect().top + window.scrollY;
+            let viewportHeight = window.innerHeight;
+            if (window.scrollY + viewportHeight > sectionOneTop) {
+                sectionOne.classList.add("view");
+                window.removeEventListener("scroll", handleScrollOne);
+                console.log("w.")
+            }
+        }
+    }
+
+
+    handleScrollFour();
+    handleScrollTwo();
+    setTimeout(function () { handleScrollOne(); }, 100)
 
 
     window.addEventListener("scroll", handleScrollTwo);
     window.addEventListener("scroll", handleScrollFour);
+    window.addEventListener("scroll", handleScrollOne);
 
 
     let adjectives = document.querySelector("section.two .adjectives");
@@ -350,16 +341,15 @@ document.addEventListener("DOMContentLoaded", e => {
 
         let active = document.querySelector("section.three .card-container2 .card.active");
         active.classList.remove("active");
-
-        if (active.nextElementSibling) {
-            active.nextElementSibling.classList.add("active");
+        let next = isRight ? active.nextElementSibling : active.previousElementSibling;
+        if (next) {
+            next.classList.add("active");
             current++;
         }
 
         console.log("current: " + current);
         let cardWidth = document.querySelector(".card-container2 .card:not(.active)").getBoundingClientRect().width + 15;
-        container.style.transform = `translate(-${Math.abs(translateX) + cardWidth}px, 0)`;
-        console.log("sho7?");
+        container.style.transform = `translate(-${(isRight ? 1 : -1) * Math.abs(translateX) + cardWidth}px, 0)`;
     });
 
     left.addEventListener("click", (e) => {
