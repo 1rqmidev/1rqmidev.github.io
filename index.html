@@ -106,12 +106,12 @@
         <section class="one">
             <div class="landing">
                 <div id="view-counter"></div>
-                <script>
+<script>
   fetch('https://views-worker.ramialmansur7.workers.dev/')
     .then(response => response.text())
     .then(views => {
       document.getElementById('view-counter').textContent = 
-        `Total Views: ${parseInt(views).toLocaleString()}`;
+        `Views: ${parseInt(views).toLocaleString()}`;
     })
     .catch(console.error);
 </script>
