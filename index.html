@@ -105,6 +105,16 @@
         <div class="space"></div>
         <section class="one">
             <div class="landing">
+                <div id="view-counter"></div>
+                <script>
+  fetch('https://views-worker.ramialmansur7.workers.dev/')
+    .then(response => response.text())
+    .then(views => {
+      document.getElementById('view-counter').textContent = 
+        `Total Views: ${parseInt(views).toLocaleString()}`;
+    })
+    .catch(console.error);
+</script>
                 <h1 class="welcome">Welcome to my page.</h1>
 
                 <h1>Rami, Known as <span>1RqMi.</span></h1>
