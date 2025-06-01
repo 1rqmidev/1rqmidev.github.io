@@ -1,0 +1,57 @@
+.gallery {
+  column-count: 4; /* or use media queries to make it responsive */
+  column-gap: 5px;
+  padding: 5px;
+}
+.design-portfolio {
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  font-family: "Calligraffitti", cursive;
+  flex-direction: column;
+  padding-top: 100px;
+  font-size: clamp(20px, 5vw, 45px);
+  margin: 0 auto;
+}
+.design-portfolio a {
+  font-size: 16px;
+  opacity: 0.7;
+  padding: var(--padding);
+}
+.section-gallery {
+  width: 90%;
+
+  margin: 0 auto;
+}
+.gallery .image {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+.gallery img {
+  width: 100%;
+  margin-bottom: 5px;
+  display: block;
+  height: auto;
+}
+
+.gallery .image h3 {
+  backdrop-filter: blur(10px);
+  padding: var(--padding);
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  box-shadow: 0 0 35px var(--turner-turn);
+  color: var(--turner);
+  text-shadow: 0 0 5px var(--turner-turn);
+  transition: 0.3s;
+  opacity: 0;
+}
+
+.gallery .image:hover h3 {
+  opacity: 1;
+}
